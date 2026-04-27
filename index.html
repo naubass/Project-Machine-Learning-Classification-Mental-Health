@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waras.in | Elite Mental Health AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0a0a0a; 
+            color: #e5e5e5;
+        }
+        .serif-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+        .dark-glass {
+            background: rgba(23, 23, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .elegant-input {
+            background-color: #171717;
+            border: 1px solid #262626;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        .elegant-input:focus {
+            border-color: #c4a77d;
+            border-width: 1.5px;
+            box-shadow: 0 0 10px rgba(196, 167, 125, 0.15);
+            outline: none;
+            transform: translateY(-1px);
+        }
+        input[type=range]::-webkit-slider-thumb { background: #c4a77d; border-radius: 50%; }
+        input[type=range]::-moz-range-thumb { background: #c4a77d; border-radius: 50%; }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-result { animation: fadeInScale 0.5s ease-out forwards; }
+    </style>
+</head>
+<body class="min-h-screen py-16 px-4">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="text-center mb-16 border-b border-neutral-800 pb-10">
+            <h1 class="text-5xl md:text-6xl font-bold tracking-tighter text-white">
+                Waras<span class="text-[#c4a77d]">.in</span> AI
+            </h1>
+            <p class="text-neutral-500 mt-4 text-lg max-w-xl mx-auto">
+                Asisten berbasis kecerdasan buatan untuk deteksi dini dan analisis stabilitas mental remaja.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-2 space-y-10">
+                <form id="predictionForm" class="dark-glass rounded-3xl p-10 space-y-10 shadow-2xl shadow-black/50">
+                    
+                    <section>
+                        <div class="flex items-center space-x-4 mb-8 border-l-4 border-[#c4a77d] pl-4">
+                            <h3 class="text-2xl font-semibold text-white tracking-tight">Metrik Gaya Hidup</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-neutral-300">Durasi Tidur rata-rata (Jam)</label>
+                                <input type="number" name="sleep_hours" step="0.1" placeholder="cth: 7.0" class="w-full px-5 py-3.5 rounded-xl elegant-input" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-neutral-300">Penggunaan Sosial Media (Jam/Hari)</label>
+                                <input type="number" name="daily_social_media_hours" step="0.1" placeholder="cth: 3.5" class="w-full px-5 py-3.5 rounded-xl elegant-input" required>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-neutral-300">Tingkat Adiksi Digital (1-10)</label>
+                                <input type="number" name="addiction_level" min="1" max="10" placeholder="Skala 1-10" class="w-full px-5 py-3.5 rounded-xl elegant-input" required>
+                            </div>
+                            <div class="space-y-3">
+                                <label class="text-sm font-medium text-neutral-300 block">Aktivitas Fisik</label>
+                                <input type="range" name="physical_activity" min="1" max="5" value="3" class="w-full h-1.5 rounded-lg appearance-none cursor-pointer bg-neutral-700 accent-[#c4a77d]">
+                                <div class="flex justify-between text-xs text-neutral-500 font-mono px-1"><span>PASIF</span><span>SANGAT AKTIF</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="flex items-center space-x-4 mb-8 border-l-4 border-[#c4a77d] pl-4 pt-2">
+                            <h3 class="text-2xl font-semibold text-white tracking-tight">Kondisi Psikologis & Akademik</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="space-y-2 relative">
+                                <label class="text-xs font-bold text-[#c4a77d] uppercase tracking-widest">Stress Level</label>
+                                <input type="number" name="stress_level" min="1" max="10" placeholder="1-10" class="w-full px-5 py-3.5 rounded-xl elegant-input text-lg font-semibold" required>
+                            </div>
+                            <div class="space-y-2 relative">
+                                <label class="text-xs font-bold text-[#c4a77d] uppercase tracking-widest">Anxiety Level</label>
+                                <input type="number" name="anxiety_level" min="1" max="10" placeholder="1-10" class="w-full px-5 py-3.5 rounded-xl elegant-input text-lg font-semibold" required>
+                            </div>
+                            <div class="space-y-2 relative">
+                                <label class="text-xs font-bold text-[#c4a77d] uppercase tracking-widest">Akademik (1-5)</label>
+                                <input type="number" name="academic_performance" min="1" max="5" placeholder="1-5" class="w-full px-5 py-3.5 rounded-xl elegant-input text-lg font-semibold" required>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="border-t border-neutral-800 pt-8 grid grid-cols-2 gap-6">
+                        <div class="elegant-input rounded-xl p-4 flex items-center justify-between">
+                            <label class="text-xs font-medium uppercase text-neutral-400">Gender</label>
+                            <select name="gender" class="bg-transparent text-white font-medium outline-none cursor-pointer">
+                                <option value="0" class="bg-[#171717]">Pria</option>
+                                <option value="1" class="bg-[#171717]">Wanita</option>
+                            </select>
+                        </div>
+                        <div class="elegant-input rounded-xl p-4 flex items-center justify-between">
+                            <label class="text-xs font-medium uppercase text-neutral-400">Usia</label>
+                            <input type="number" name="age" value="21" class="bg-transparent text-white font-medium outline-none text-right w-16">
+                        </div>
+                        <input type="hidden" name="platform_usage" value="1">
+                        <input type="hidden" name="social_interaction_level" value="3">
+                        <input type="hidden" name="screen_time_before_sleep" value="2">
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full bg-[#c4a77d] hover:bg-[#b3966b] text-black font-bold py-5 rounded-2xl shadow-lg transition-all duration-300 active:scale-[0.98] flex items-center justify-center space-x-3 text-lg">
+                        <span>Mulai Analisis</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="sticky top-10 space-y-8">
+                    <div id="welcomeBox" class="dark-glass rounded-3xl p-8 border border-neutral-800 text-center">
+                        <div class="w-20 h-20 bg-[#171717] rounded-full flex items-center justify-center mx-auto mb-6 border border-neutral-800 text-[#c4a77d]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-4">Analisis Presisi AI</h2>
+                        <p class="text-neutral-400 text-sm leading-relaxed mb-6">Lengkapi data diagnostik. Model Random Forest kami akan menganalisis probabilitas stabilitas mental Anda.</p>
+                        <p class="serif-quote text-[#c4a77d]/80 text-xl">"Kesehatan mental adalah kemewahan yang harus dijaga."</p>
+                    </div>
+
+                    <div id="resultBox" class="hidden dark-glass rounded-3xl p-8 flex flex-col items-center justify-center text-center shadow-2xl border border-neutral-800 relative overflow-hidden animate-result">
+                        <div id="glowEffect" class="absolute inset-0 opacity-20 blur-3xl transition-all duration-1000"></div>
+                        <div id="resultIcon" class="w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl shadow-inner relative z-10 border border-neutral-800"></div>
+                        <h3 id="predictionTitle" class="text-3xl font-black mb-2 tracking-tighter relative z-10 uppercase"></h3>
+                        
+                        <div class="w-full bg-[#171717] border border-neutral-800 rounded-full h-2 mt-4 mb-2 relative z-10">
+                            <div id="confidenceBar" class="h-full rounded-full transition-all duration-1000 bg-[#c4a77d]" style="width: 0%"></div>
+                        </div>
+                        <p id="confidenceLabel" class="font-mono text-[10px] uppercase tracking-widest relative z-10 text-neutral-400 mb-8"></p>
+
+                        <div class="relative z-10 w-full p-5 rounded-2xl bg-white/5 border border-white/10 text-left">
+                            <h4 class="text-[#c4a77d] font-bold text-[10px] uppercase tracking-widest mb-3 border-b border-[#c4a77d]/20 pb-2">Rekomendasi Waras.in:</h4>
+                            <ul id="adviceList" class="text-xs text-neutral-300 space-y-3 list-none">
+                                </ul>
+                        </div>
+                        
+                        <button onclick="location.reload()" class="mt-8 text-neutral-500 text-[10px] hover:text-[#c4a77d] transition relative z-10 uppercase tracking-tighter border-b border-neutral-800">Analisis Ulang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center mt-20 text-neutral-700 text-[10px] uppercase tracking-[0.3em] pt-10 border-t border-neutral-900">
+            © 2026 NAUFAL RESEARCH LAB // WARAS.IN ENGINE // CONFIDENTIAL
+        </footer>
+    </div>
+
+    <script>
+        const form = document.getElementById('predictionForm');
+        const welcomeBox = document.getElementById('welcomeBox');
+        const resultBox = document.getElementById('resultBox');
+        const predictionTitle = document.getElementById('predictionTitle');
+        const confidenceLabel = document.getElementById('confidenceLabel');
+        const confidenceBar = document.getElementById('confidenceBar');
+        const resultIcon = document.getElementById('resultIcon');
+        const glowEffect = document.getElementById('glowEffect');
+        const adviceList = document.getElementById('adviceList');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = parseFloat(value));
+
+            // UI Loading State
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>MENGALISIS...</span>`;
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+                
+                welcomeBox.classList.add('hidden');
+                resultBox.classList.remove('hidden');
+                adviceList.innerHTML = '';
+
+                if (result.prediction === "Depression") {
+                    predictionTitle.innerText = "STRESS LU BRO!";
+                    predictionTitle.className = "text-3xl font-black mb-2 tracking-tighter relative z-10 text-rose-500 uppercase";
+                    resultIcon.innerHTML = "⚠️";
+                    resultIcon.className = "w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl border border-rose-900 bg-rose-950/30 text-rose-500 relative z-10";
+                    glowEffect.className = "absolute inset-0 opacity-20 blur-3xl transition-all duration-1000 bg-rose-600";
+                    
+                    const tips = [
+                        "✦ Lakukan Digital Detox (matikan HP) minimal 2 jam sekarang.",
+                        "✦ Coba teknik pernapasan Box Breathing (4-4-4-4).",
+                        "✦ Ceritakan beban pikiranmu kepada orang kepercayaan.",
+                        "✦ Segera hubungi profesional jika perasaan ini menetap."
+                    ];
+                    tips.forEach(t => adviceList.innerHTML += `<li class="flex items-start gap-2"><span>•</span> ${t}</li>`);
+                } else {
+                    predictionTitle.innerText = "SEHAT WAL AFIAT";
+                    predictionTitle.className = "text-3xl font-black mb-2 tracking-tighter relative z-10 text-emerald-400 uppercase";
+                    resultIcon.innerHTML = "💚";
+                    resultIcon.className = "w-20 h-20 rounded-full flex items-center justify-center mb-6 text-4xl border border-emerald-900 bg-emerald-950/30 text-emerald-400 relative z-10";
+                    glowEffect.className = "absolute inset-0 opacity-20 blur-3xl transition-all duration-1000 bg-emerald-500";
+                    
+                    const tips = [
+                        "✦ Pertahankan ritme tidur 7-8 jam per hari.",
+                        "✦ Teruskan aktivitas fisik atau hobi produktifmu.",
+                        "✦ Latih rasa syukur (gratitude journaling) setiap malam.",
+                        "✦ Support teman-temanmu yang mungkin sedang kesulitan."
+                    ];
+                    tips.forEach(t => adviceList.innerHTML += `<li class="flex items-start gap-2"><span>•</span> ${t}</li>`);
+                }
+
+                confidenceLabel.innerText = `CONFIDENCE SCORE: ${result.confidence}%`;
+                setTimeout(() => {
+                    confidenceBar.style.width = `${result.confidence}%`;
+                }, 300);
+
+            } catch (error) {
+                alert("ERR: Backend Offline. Jalankan FastAPI!");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<span>MULAI ANALISIS</span>`;
+            }
+        };
+    </script>
+</body>
+</html>
